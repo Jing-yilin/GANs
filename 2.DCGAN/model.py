@@ -3,7 +3,7 @@ Discriminator and Generator implementation from DCGAN paper
 paper url: https://arxiv.org/pdf/1511.06434.pdf
 tutorial: https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html
 reference video: https://www.youtube.com/watch?v=Tk5B4seA-AU&list=PLJV_el3uVTsPy9oCRY30oBPNLCo89yu49&index=26&ab_channel=Hung-yiLee
-Author: 景风眠
+Author: Zephyr
 """
 
 import torch
@@ -81,6 +81,12 @@ class Generator(nn.Module):
     def forward(self, x):
         return self.net(x)
 
+def initialize_weights(model):
+    # Initialize weights according to the paper
+    for m in model.modules():
+        if isinstance(m, (nn.Conv2d, nn.ConvTranspose2d, nn.BatchNorm2d)):
+            nn.init.normal_(m.weight.data, 0.0, 0.02) # make its initial parameters ~ N(0.0, 0.02)
+    
     
 
 if __name__ == "__main__":
@@ -93,3 +99,6 @@ if __name__ == "__main__":
     x = torch.randn((2, 100, 1, 1))
     out = gen(x)
     print(out.size()) # torch.Size([2, 3, 64, 64])
+
+    # initialize_weights(gen)
+    
