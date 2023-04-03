@@ -1,11 +1,3 @@
-"""
-Discriminator and Generator implementation from WGAN paper
-paper url: https://arxiv.org/pdf/1701.07875.pdf
-reference: https://zhuanlan.zhihu.com/p/25071913
-youtube tutorial: https://www.youtube.com/watch?v=pG0QZ7OddX4&ab_channel=AladdinPersson
-Author: Zephyr
-"""
-
 import torch
 import torch.nn as nn
 
@@ -15,9 +7,7 @@ class Discriminator(nn.Module):
         super(Discriminator, self).__init__()
         self.disc = nn.Sequential(
             # input: N x channels_img x 64 x 64
-            nn.Conv2d(
-                channels_img, features_d, kernel_size=4, stride=2, padding=1
-            ),
+            nn.Conv2d(channels_img, features_d, kernel_size=4, stride=2, padding=1),
             nn.LeakyReLU(0.2),
             # _block(in_channels, out_channels, kernel_size, stride, padding)
             self._block(features_d, features_d * 2, 4, 2, 1),
@@ -95,7 +85,6 @@ def test():
     gen = Generator(noise_dim, in_channels, 8)
     z = torch.randn((N, noise_dim, 1, 1))
     assert gen(z).shape == (N, in_channels, H, W), "Generator test failed"
-    print("Success, tests passed!")
 
-if __name__ == "__main__":
-    test()
+
+# test()
