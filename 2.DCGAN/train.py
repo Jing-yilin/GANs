@@ -60,6 +60,8 @@ step = 0
 gen.train()
 disc.train()
 
+print(f'Running on {device}')
+
 for epoch in range(num_epochs):
     # Target labels not needed! <3 unsupervised
     for batch_idx, (real, _) in enumerate(dataloader):
