@@ -2,7 +2,7 @@
 使用全连接层实现一个简单的GAN
 Author: 景风眠
 """
-
+import time # 增加计时
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -74,6 +74,12 @@ writer_real = SummaryWriter(f"1.SimpleGAN/logs/real")
 step = 0
 
 print(f"Running on {device}")
+# 打印模型参数
+print(f"Discriminator parameters: {sum(p.numel() for p in disc.parameters() if p.requires_grad)}")
+print(f"Generator parameters: {sum(p.numel() for p in gen.parameters() if p.requires_grad)}")
+# 开始计时
+start_time = time.time()
+
 for epoch in range(num_epochs):
     for batch_idx, (real, _) in enumerate(loader):
         '''
@@ -145,3 +151,6 @@ for epoch in range(num_epochs):
         
 
 
+# 计时结束
+end_time = time.time()
+print(f"Total time: {end_time - start_time}s")
