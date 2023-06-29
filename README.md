@@ -3,6 +3,6 @@ Implementation from scratch: Simple GAN, DCGAN, WGAN, WGAN-GP, Cycle GAN, ESRGAN
 
 ## Create a new environment
 ```
-conda create -n GANs python=3.6
+conda create -n GANs python=3.10
 conda activate GANs
 ```

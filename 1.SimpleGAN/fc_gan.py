@@ -44,8 +44,8 @@ class Generater(nn.Module):
         return self.gen(x)
 
 # 超参设置
-# device = 'cuda' if torch.cuda.is_available() else 'cpu'
-device = 'mps'
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+# device = 'mps'
 lr = 0.0003
 z_dim = 64
 image_dim = 28 * 28 * 1
